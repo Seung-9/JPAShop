@@ -2,6 +2,7 @@ package jpabook.jpashop.domain.Item;
 
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.Category;
+import jpabook.jpashop.dto.UpdateItemDto;
 import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
-@Getter
+@Getter @Setter
 public class Item {
 
     @Id @GeneratedValue
@@ -43,6 +44,15 @@ public class Item {
             throw new NotEnoughStockException("need more stock");
         }
         this.stockQuantity = restStock;
+    }
+
+    /**
+     * 변경 감지
+     */
+    public void changeItem(UpdateItemDto updateItemDto) {
+        this.name = updateItemDto.getName();
+        this.price = updateItemDto.getPrice();
+        this.stockQuantity = updateItemDto.getStockQuantity();
     }
 
 }

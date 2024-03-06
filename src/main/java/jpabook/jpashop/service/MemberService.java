@@ -26,6 +26,7 @@ public class MemberService {
         return member.getId();
     }
 
+    // 중복 회원 체크
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByName(member.getName());
         if (!findMembers.isEmpty()) {
@@ -45,4 +46,9 @@ public class MemberService {
         return memberRepository.findOne(memberId);
     }
 
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.updateName(name);
+    }
 }

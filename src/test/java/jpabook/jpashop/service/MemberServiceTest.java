@@ -21,8 +21,9 @@ public class MemberServiceTest {
     public void 회원가입() throws Exception {
 
         // given
-        Member member = new Member();
-        member.setName("kim");
+        Member member = Member.builder()
+                .name("kim")
+                .build();
 
         // when
         Long saveId = memberService.join(member);
@@ -36,11 +37,13 @@ public class MemberServiceTest {
     public void 중복_회원_예외() throws Exception {
 
         // given
-        Member member1 = new Member();
-        member1.setName("kim");
+        Member member1 = Member.builder()
+                .name("kim")
+                .build();
 
-        Member member2 = new Member();
-        member2.setName("kim");
+        Member member2 = Member.builder()
+                .name("kim")
+                .build();
 
         // when
         memberService.join(member1);
