@@ -65,4 +65,11 @@ public class OrderService {
     public List<Order> findOrders(OrderSearch orderSearch) {
         return orderRepository.findAllByString(orderSearch);
     }
+
+    /**
+     * 주문 검색 fetch join 사용
+     */
+    public List<Order> findOrdersUseFetchJoin () {
+        return orderRepository.findAllWithMemberDelivery();
+    }
 }
