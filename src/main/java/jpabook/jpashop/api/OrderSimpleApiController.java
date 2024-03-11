@@ -67,6 +67,8 @@ public class OrderSimpleApiController {
 
     /**
      * 주문하기 V4 JPA 에서 바로 DTO로 조회
+     * 원하는 데이터만 선택해서 조회
+     * repository를 사용하는 것은 엔티티를 조회하는 목적으로만 사용하자
      */
     @GetMapping("/api/v4/simple-orders")
     public List<OrderSimpleQueryDto> ordersV4() {

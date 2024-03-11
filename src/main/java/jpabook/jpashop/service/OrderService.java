@@ -72,4 +72,5 @@ public class OrderService {
     public List<Order> findOrdersUseFetchJoin () {
         return orderRepository.findAllWithMemberDelivery();
     }
+
 }
